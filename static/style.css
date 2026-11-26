@@ -13,13 +13,18 @@
 }
 
 /* =========================================================
-   TYPOGRAPHY
+   TYPOGRAPHY (PRESERVE MATERIAL ICONS)
 ========================================================= */
 
 .block-container,
-.block-container *,
-[data-testid="stSidebar"] * {
+.block-container *:not([data-testid="stIconMaterial"]):not(.material-symbols-rounded),
+[data-testid="stSidebar"] *:not([data-testid="stIconMaterial"]):not(.material-symbols-rounded) {
   font-family: 'AdobeClean', sans-serif !important;
+}
+
+[data-testid="stIconMaterial"],
+.material-symbols-rounded {
+  font-family: 'Material Symbols Rounded' !important;
 }
 
 /* =========================================================
@@ -191,7 +196,6 @@ header[data-testid="stHeader"] {
   pointer-events: none !important;
 }
 
-/* Keep sidebar toggle button clickable & visible on mobile/desktop */
 [data-testid="stSidebarCollapsedControl"],
 [data-testid="collapsedControl"],
 [data-testid="stExpandSidebarButton"],
@@ -202,7 +206,6 @@ header[data-testid="stHeader"] button[kind="header"] {
   color: #F8FAFC !important;
 }
 
-/* Hide only right-side Fork, GitHub icon, and 3-dots menu */
 [data-testid="stToolbarActions"],
 [data-testid="stMainMenu"],
 [data-testid="stStatusWidget"],
