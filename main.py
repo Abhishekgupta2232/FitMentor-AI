@@ -91,18 +91,14 @@ def main():
                 st.session_state.last_saved_sets_completed = 0
 
                 if st.session_state.voice_pipeline:
-                    try:
-                        result = st.session_state.voice_pipeline.process_event(
-                            event="workout_started",
-                            exercise=plan_exercise,
-                            metrics={}
-                        )
+                    result = st.session_state.voice_pipeline.process_event(
+                        event="workout_started",
+                        exercise=plan_exercise,
+                        metrics={}
+                    )
 
-                        if result:
-                            st.session_state.audio_to_play, st.session_state.coach_feedback = result
-                            st.session_state.speak_fallback = True
-                    except Exception as e:
-                        st.warning(f"Voice coach unavailable: {e}")
+                    if result:
+                        st.session_state.audio_to_play, st.session_state.coach_feedback = result
 
                 st.session_state.last_notified_sets_completed = 0
                 st.session_state.last_notified_workout_complete = False
@@ -120,17 +116,13 @@ def main():
                 st.session_state.workout_started = False
 
                 if st.session_state.voice_pipeline:
-                    try:
-                        result = st.session_state.voice_pipeline.process_event(
-                            event="workout_completed",
-                            exercise=exercise,
-                            metrics={}
-                        )
-                        if result:
-                            st.session_state.audio_to_play, st.session_state.coach_feedback = result
-                            st.session_state.speak_fallback = True
-                    except Exception as e:
-                        st.warning(f"Voice coach unavailable: {e}")
+                    result = st.session_state.voice_pipeline.process_event(
+                        event="workout_completed",
+                        exercise=exercise,
+                        metrics={}
+                    )
+                    if result:
+                        st.session_state.audio_to_play, st.session_state.coach_feedback = result
 
                 st.rerun()
 
@@ -196,11 +188,8 @@ def main():
         unsafe_allow_html=True,
     )
 
-    if st.session_state.get("audio_to_play") or st.session_state.get("speak_fallback"):
-        autoplay_audio(
-            st.session_state.get("audio_to_play"),
-            st.session_state.get("coach_feedback", ""),
-        )
+    if st.session_state.get("audio_to_play"):
+        autoplay_audio(st.session_state.audio_to_play)
 
     if st.session_state.get("coach_feedback"):
         st.markdown("")

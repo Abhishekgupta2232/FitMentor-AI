@@ -7,12 +7,12 @@ class TextToSpeech:
         cleaned = (text or "").strip()
 
         if not cleaned:
-            return None
+            return
+        
+        buffer = BytesIO()
 
-        try:
-            buffer = BytesIO()
-            gTTS(text=cleaned, lang=lang).write_to_fp(buffer)
-            buffer.seek(0)
-            return buffer.read()
-        except Exception:
-            return None
+        gTTS(text=cleaned, lang=lang).write_to_fp(buffer)
+
+        buffer.seek(0)
+
+        return buffer.read()
