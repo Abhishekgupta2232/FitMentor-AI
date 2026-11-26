@@ -183,18 +183,31 @@ div[role="menuitem"] {
 }
 
 /* =========================================================
-   HIDE TOP TOOLBAR (FORK, GITHUB ICON, MENU)
+   HIDE FORK / GITHUB / MENU BUT KEEP MOBILE SIDEBAR ARROW
 ========================================================= */
 
-[data-testid="stToolbar"],
-[data-testid="stActionButtonIcon"],
-[data-testid="stMainMenu"],
 header[data-testid="stHeader"] {
-  visibility: hidden !important;
-  height: 0px !important;
-  display: none !important;
+  background: transparent !important;
+  pointer-events: none !important;
 }
 
+/* Keep sidebar toggle button clickable & visible on mobile/desktop */
+[data-testid="stSidebarCollapsedControl"],
+[data-testid="collapsedControl"],
+[data-testid="stExpandSidebarButton"],
+header[data-testid="stHeader"] button[kind="header"] {
+  pointer-events: auto !important;
+  visibility: visible !important;
+  display: flex !important;
+  color: #F8FAFC !important;
+}
+
+/* Hide only right-side Fork, GitHub icon, and 3-dots menu */
+[data-testid="stToolbarActions"],
+[data-testid="stMainMenu"],
+[data-testid="stStatusWidget"],
+[data-testid="stAppDeployButton"],
 #MainMenu {
+  display: none !important;
   visibility: hidden !important;
 }
