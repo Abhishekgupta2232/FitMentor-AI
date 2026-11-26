@@ -157,6 +157,11 @@ div[role="menuitem"] {
   font-family: 'AdobeClean', sans-serif !important;
 }
 
+[data-testid="stTable"] {
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
 [data-testid="stTable"] table {
   border-color: rgba(148, 163, 184, 0.15) !important;
 }
@@ -167,10 +172,14 @@ div[role="menuitem"] {
   text-transform: uppercase;
   font-size: 0.8rem !important;
   letter-spacing: 0.5px;
+  white-space: nowrap !important;
+  padding: 0.6rem 0.75rem !important;
 }
 
 [data-testid="stTable"] td {
   color: #E2E8F0 !important;
+  white-space: nowrap !important;
+  padding: 0.6rem 0.75rem !important;
 }
 
 /* =========================================================
@@ -213,4 +222,14 @@ header[data-testid="stHeader"] button[kind="header"] {
 #MainMenu {
   display: none !important;
   visibility: hidden !important;
+}
+
+/* =========================================================
+   MOBILE RESPONSIVE PADDING
+========================================================= */
+
+@media (max-width: 640px) {
+  .block-container {
+    padding: 36px 1rem !important;
+  }
 }

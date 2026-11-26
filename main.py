@@ -268,6 +268,7 @@ def main():
                 "Sets": "sum",
                 "Time (sec)": "sum"
             }).reset_index()
+            agg_df["Time (sec)"] = agg_df["Time (sec)"].round(1)
             agg_df.index += 1
             st.table(agg_df, border="horizontal")
         else:
