@@ -1,0 +1,183 @@
+/* =========================================================
+   GLOBAL THEME — DEEP OBSIDIAN & MIDNIGHT NAVY SIDEBAR
+========================================================= */
+
+.stApp {
+  background-color: #090D16;
+  color: #F8FAFC;
+}
+
+[data-testid="stSidebar"] {
+  background: linear-gradient(180deg, #0F172A 0%, #111C33 100%) !important;
+  border-right: 1px solid rgba(148, 163, 184, 0.14);
+}
+
+/* =========================================================
+   TYPOGRAPHY
+========================================================= */
+
+.block-container,
+.block-container *,
+[data-testid="stSidebar"] * {
+  font-family: 'AdobeClean', sans-serif !important;
+}
+
+/* =========================================================
+   LAYOUT
+========================================================= */
+
+.block-container {
+  padding: 44px 3rem !important;
+  max-width: 780px !important;
+}
+
+/* =========================================================
+   PRIMARY ACTION BUTTONS
+========================================================= */
+
+.stButton > button,
+div[data-testid="stFormSubmitButton"] > button,
+.stDownloadButton > button {
+  background-color: #2563EB !important;
+  color: #FFFFFF !important;
+  border: 1px solid #3B82F6 !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.2px;
+  transition: all 0.2s ease !important;
+  font-family: 'AdobeClean', sans-serif !important;
+}
+
+.stButton > button:hover,
+div[data-testid="stFormSubmitButton"] > button:hover,
+.stDownloadButton > button:hover {
+  background-color: #1D4ED8 !important;
+  border-color: #60A5FA !important;
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.35) !important;
+}
+
+/* Number input +/- buttons cleanly blended with navy sidebar */
+[data-testid="stNumberInputContainer"] button {
+  background-color: #1E293B !important;
+  color: #E2E8F0 !important;
+  border: 1px solid rgba(148, 163, 184, 0.16) !important;
+  border-radius: 0 !important;
+}
+
+[data-testid="stNumberInputContainer"] button:hover {
+  background-color: #273549 !important;
+  color: #FFFFFF !important;
+}
+
+/* =========================================================
+   INPUTS & SELECTBOXES
+========================================================= */
+
+input,
+textarea,
+[data-testid="stSelectbox"] > div > div,
+[data-baseweb="select"] > div,
+[data-testid="stNumberInputContainer"],
+[data-testid="stTextInput"] > div {
+  background-color: #162036 !important;
+  color: #F8FAFC !important;
+  border-color: rgba(148, 163, 184, 0.2) !important;
+  border-radius: 8px !important;
+  font-family: 'AdobeClean', sans-serif !important;
+}
+
+input:focus,
+textarea:focus,
+[data-baseweb="select"] > div:focus-within,
+[data-testid="stNumberInputContainer"]:focus-within,
+[data-testid="stTextInput"] > div:focus-within {
+  border-color: #3B82F6 !important;
+  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.35) !important;
+}
+
+p,
+li,
+code,
+[data-baseweb="popover"] ul,
+[data-baseweb="menu"] {
+  font-family: 'AdobeClean', sans-serif !important;
+}
+
+/* =========================================================
+   METRICS (SIDEBAR PROGRESS & FORM METRICS)
+========================================================= */
+
+[data-testid="stMetric"] {
+  background-color: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  padding: 0.9rem 1.1rem;
+  border-radius: 8px;
+}
+
+[data-testid="stMetric"] div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+[data-testid="stMetricValue"] {
+  font-size: 1.4rem !important;
+  font-weight: 600 !important;
+  color: #F8FAFC !important;
+}
+
+[data-testid="stMetricLabel"] {
+  font-size: 14px !important;
+  color: #94A3B8 !important;
+}
+
+/* =========================================================
+   TABLES & CONTAINERS (CLEAN NEUTRAL SLATE)
+========================================================= */
+
+.stContainer,
+.stExpander,
+.stTabs,
+.stColumns,
+.stPopover,
+.stAlertContainer,
+.stStatusContainer,
+.stTable,
+.stDataFrame,
+[data-baseweb="popover"],
+[data-baseweb="menu"],
+div[role="menu"],
+div[role="menuitem"] {
+  border-radius: 8px !important;
+  font-family: 'AdobeClean', sans-serif !important;
+}
+
+[data-testid="stTable"] table {
+  border-color: rgba(148, 163, 184, 0.15) !important;
+}
+
+[data-testid="stTable"] th {
+  color: #94A3B8 !important;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  font-size: 0.8rem !important;
+  letter-spacing: 0.5px;
+}
+
+[data-testid="stTable"] td {
+  color: #E2E8F0 !important;
+}
+
+/* =========================================================
+   LOGIN FORM CARD
+========================================================= */
+
+.stForm,
+[data-testid="stForm"] {
+  margin-top: 1.25rem !important;
+  padding: 1.5rem 1.25rem !important;
+  background-color: #111827 !important;
+  border: 1px solid rgba(148, 163, 184, 0.16) !important;
+  border-radius: 10px !important;
+  color: #FFFFFF;
+}
