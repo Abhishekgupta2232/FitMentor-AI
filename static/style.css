@@ -181,3 +181,20 @@ div[role="menuitem"] {
   border-radius: 10px !important;
   color: #FFFFFF;
 }
+
+/* =========================================================
+   HIDE TOP TOOLBAR (FORK, GITHUB ICON, MENU)
+========================================================= */
+
+[data-testid="stToolbar"],
+[data-testid="stActionButtonIcon"],
+[data-testid="stMainMenu"],
+header[data-testid="stHeader"] {
+  visibility: hidden !important;
+  height: 0px !important;
+  display: none !important;
+}
+
+#MainMenu {
+  visibility: hidden !important;
+}

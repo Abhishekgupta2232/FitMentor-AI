@@ -273,6 +273,11 @@ def main():
         else:
             st.info("No workout history found.")
 
+    st.markdown(
+        '<div style="text-align: center; color: #94A3B8; font-size: 0.9rem; margin-top: 40px; padding-bottom: 12px;">Created with ❤️ by <strong style="color: #f8fafc;">Abhishek Gupta</strong></div>',
+        unsafe_allow_html=True,
+    )
+
 
 if __name__ == "__main__":
     main()

@@ -51,4 +51,9 @@ def render_login_wall():
         st.session_state["username"] = user["username"]
         st.rerun()
 
+    st.markdown(
+        '<div style="text-align: center; color: #94a3b8; font-size: 0.9rem; margin-top: 28px;">Created with ❤️ by <strong style="color: #f8fafc;">Abhishek Gupta</strong></div>',
+        unsafe_allow_html=True,
+    )
+
     return False
