@@ -63,7 +63,11 @@ class VoicePipeline:
 
         return None
 
-    def process_event(self, event, exercise, metrics, language="English"):
+    def process_event(self, event, exercise, metrics, language="English", *args, **kwargs):
+        if not language and "language" in kwargs:
+            language = kwargs["language"]
+        language = language or "English"
+
         issue = self._find_form_issue(exercise, metrics)
 
         now = time.time()
@@ -78,7 +82,7 @@ class VoicePipeline:
                 return None
 
         text = self.llm.give_feedback(event, issue, language=language)
-        tts_lang = "hi" if (language or "").strip().lower() in ("hindi", "hi") else "en"
+        tts_lang = "hi" if str(language).strip().lower() in ("hindi", "hi", "hi-in") else "en"
         voice = self.tts.speak(text, lang=tts_lang)
 
         self.last_spoken_at = now

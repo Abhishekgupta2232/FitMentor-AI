@@ -18,6 +18,8 @@ from services.coaching.llm import LLMCoach
 from services.coaching.tts import TextToSpeech
 from services.coaching.voice_pipeline import VoicePipeline, autoplay_audio
 
+VOICE_PIPELINE_VERSION = "v2-bilingual"
+
 
 def main():
     st.set_page_config(
@@ -37,7 +39,12 @@ def main():
 
     initial_session_defaults()
 
-    if not st.session_state.get("voice_pipeline"):
+    needs_pipeline_init = (
+        not st.session_state.get("voice_pipeline")
+        or st.session_state.get("voice_pipeline_version") != VOICE_PIPELINE_VERSION
+    )
+
+    if needs_pipeline_init:
         try:
             api_key = os.environ.get("GROQ_API_KEY", "").strip()
 
@@ -51,6 +58,7 @@ def main():
                 llm_coach = LLMCoach(groq_client)
                 tts = TextToSpeech()
                 st.session_state.voice_pipeline = VoicePipeline(llm_coach, tts)
+                st.session_state.voice_pipeline_version = VOICE_PIPELINE_VERSION
         except Exception as e:
             st.error(f"Voice Pipeline Error: {e}")
             st.session_state.voice_pipeline = None
