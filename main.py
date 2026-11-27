@@ -71,6 +71,16 @@ def main():
         st.subheader("Workout Plan")
 
         if not workout_started:
+            current_lang = st.session_state.get("selected_coach_language", "English")
+            coach_language = st.selectbox(
+                "Coach Language",
+                options=["English", "Hindi"],
+                index=0 if current_lang == "English" else 1,
+                key="coach_language_select",
+            )
+            st.session_state.selected_coach_language = coach_language
+            st.session_state.coach_language = coach_language
+
             plan_exercise = st.selectbox("Exercise", options=EXERCISE_OPTIONS, key="plan_exercise")
 
             plan_sets = st.number_input("Sets", min_value=0, max_value=50, key="plan_sets", step=1)
@@ -82,6 +92,8 @@ def main():
             start_session_button = st.button("Start Workout", width="stretch", key="start_session_button")
 
             if start_session_button:
+                active_lang = st.session_state.get("selected_coach_language", "English")
+                st.session_state.coach_language = active_lang
                 st.session_state.exercise_type = plan_exercise
                 st.session_state.target_sets = int(plan_sets)
                 st.session_state.reps_per_set = int(plan_reps)
@@ -94,7 +106,8 @@ def main():
                     result = st.session_state.voice_pipeline.process_event(
                         event="workout_started",
                         exercise=plan_exercise,
-                        metrics={}
+                        metrics={},
+                        language=active_lang,
                     )
 
                     if result:
@@ -104,11 +117,13 @@ def main():
                 st.session_state.last_notified_workout_complete = False
                 st.rerun()
         else:
+            active_lang = st.session_state.get("selected_coach_language", "English")
+            st.session_state.coach_language = active_lang
             exercise = st.session_state.get("exercise_type")
             sets = st.session_state.get("target_sets")
             reps = st.session_state.get("reps_per_set")
 
-            st.info(f"**{exercise}** — {sets} Sets / {reps} Reps")
+            st.info(f"**{exercise}** — {sets} Sets / {reps} Reps · **{active_lang}**")
 
             end_session_button = st.button("End Workout", key="end_session_button", width="stretch")
 
@@ -119,7 +134,8 @@ def main():
                     result = st.session_state.voice_pipeline.process_event(
                         event="workout_completed",
                         exercise=exercise,
-                        metrics={}
+                        metrics={},
+                        language=active_lang,
                     )
                     if result:
                         st.session_state.audio_to_play, st.session_state.coach_feedback = result

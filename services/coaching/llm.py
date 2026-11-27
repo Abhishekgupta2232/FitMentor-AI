@@ -7,11 +7,20 @@ class LLMCoach:
         self.history = []
         self.system_prompt = PROMPT
 
-    def give_feedback(self, event, issue):
-        prompt = f"Event: {event}"
+    def give_feedback(self, event, issue, language="English"):
+        lang_mode = (language or "English").strip().lower()
+        if lang_mode in ("hindi", "hi"):
+            lang_instruction = (
+                "Respond ONLY in natural, easy-to-understand Hindi "
+                "(use Devanagari script with natural gym coaching terms, concise and encouraging)."
+            )
+        else:
+            lang_instruction = "Respond ONLY in clear, concise English."
+
+        prompt = f"Language: {lang_instruction}\nEvent: {event}"
 
         if issue:
-            prompt += f" Form Issue: {issue}"
+            prompt += f"\nForm Issue: {issue}"
 
         messages = [
             {"role": "system", "content": self.system_prompt},
